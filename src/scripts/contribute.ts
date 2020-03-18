@@ -1,17 +1,15 @@
 // Description:
-//   Tells you how to contribute to this bot
+//   Lists skills/projects/prospects/etc available in this Slack
 //
 // Commands:
-//   can I add commands to this bot?
+//   list <prefix> - prefix can be skills/projects/prospects
 
 import * as _ from "lodash";
 
-import { react, reply, getChannels } from '../slack';
+import { reply, getChannels } from '../slack';
 
 module.exports = (robot: any) => {
-  robot.respond(/can I add commands to this bot/i, async (res: any) => {
-    react(res, 'heavy_check_mark');
-    reply(res, "Sure thing!\nSource code is at https://github.com/subvisual/tech4covid-slack-bot\nPing Miguel Palhas in this Slack, he'll give you access.")
+  robot.respond(/list (\w+)/i, async (res: any) => {
     const prefix = res.match[1].replace(/s$/, '');
 
     const resp: any = await getChannels();

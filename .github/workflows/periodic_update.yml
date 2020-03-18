@@ -16,5 +16,4 @@ jobs:
           curl -X POST -H 'Authorization: Bearer xoxb-1234-56789abcdefghijklmnop' \
           -H 'Content-type: application/json' \
           --data '{"channel":"D01096YCJJY","text":"Daily Hello World"}' \
-https://slack.com/api/chat.postMessage
-
+          https://slack.com/api/chat.postMessage
