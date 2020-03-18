@@ -10,7 +10,7 @@ import { reply, getChannels } from '../slack';
 
 module.exports = (robot: any) => {
   robot.respond(/list (\w+)/i, async (res: any) => {
-    const prefix = res.match[1];
+    const prefix = res.match[1].replace(/s$/, '');
 
     const resp: any = await getChannels();
 
