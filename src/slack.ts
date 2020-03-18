@@ -1,9 +1,16 @@
 import * as _ from "lodash";
+import { WebClient } from '@slack/web-api';
 
-import { WebClient } from "@slack/client";
+import { WebClient as LegacyClient } from "@slack/client";
+
+export const getChannels = async () => {
+  const api = new WebClient(process.env.SLACK_API_TOKEN);
+
+  return await api.channels.list();
+}
 
 export const react = (res: any, reaction: string) => {
-  const web = new WebClient(process.env.HUBOT_SLACK_TOKEN!);
+  const web = new LegacyClient(process.env.HUBOT_SLACK_TOKEN!);
 
   web.reactions.add({
     name: reaction,
@@ -13,7 +20,7 @@ export const react = (res: any, reaction: string) => {
 };
 
 export const unreact = (res: any, reaction: string) => {
-  const web = new WebClient(process.env.HUBOT_SLACK_TOKEN!);
+  const web = new LegacyClient(process.env.HUBOT_SLACK_TOKEN!);
 
   web.reactions.remove({
     name: reaction,
