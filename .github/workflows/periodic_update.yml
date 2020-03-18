@@ -2,12 +2,22 @@ name: Periodic Update
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
       # insert slack curl request here
-      - run: curl https://google.com
+      - run: curl -X POST -H 'Content-type: application/json' --data '{"text":"Allow me to reintroduce myself!"}' https://slack.com/api/chat.postMessage
+
+      - run: |
+          curl -X POST -H 'Authorization: Bearer xoxb-1234-56789abcdefghijklmnop' \
+          -H 'Content-type: application/json' \
+          --data '{"channel":"D01096YCJJY","text":"Daily Hello World"}' \
+https://slack.com/api/chat.postMessage
+
