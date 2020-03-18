@@ -1,0 +1,13 @@
+name: Periodic Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # insert slack curl request here
+      - run: curl https://google.com
