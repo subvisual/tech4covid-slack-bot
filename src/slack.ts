@@ -6,7 +6,7 @@ import { WebClient as LegacyClient } from "@slack/client";
 export const getChannels = async () => {
   const api = new WebClient(process.env.SLACK_API_TOKEN);
 
-  return await api.channels.list();
+  return api.channels.list();
 }
 
 export const react = (res: any, reaction: string) => {

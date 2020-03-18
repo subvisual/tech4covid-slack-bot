@@ -2,7 +2,8 @@ name: Periodic Update
 
 on:
   push:
-    - master
+    branches:
+      - master
 
 jobs:
   deploy:

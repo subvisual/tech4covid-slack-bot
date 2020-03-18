@@ -3,6 +3,7 @@
     "incremental": true,
     "target": "es6",
     "module": "commonjs",
+    "downlevelIteration": true,
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "src",
