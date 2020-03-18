@@ -2,7 +2,7 @@
 //   Lists skills/projects/prospects/etc available in this Slack
 //
 // Commands:
-//   @bot list <prefix> - prefix can be skills/projects/prospects
+//   list <prefix> - prefix can be skills/projects/prospects
 
 import * as _ from "lodash";
 
