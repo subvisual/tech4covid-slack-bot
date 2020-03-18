@@ -12,9 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      # insert slack curl request here
-      - run: curl -X POST -H 'Content-type: application/json' --data '{"text":"Allow me to reintroduce myself!"}' https://slack.com/api/chat.postMessage
-
       - run: |
           curl -X POST -H 'Authorization: Bearer xoxb-1234-56789abcdefghijklmnop' \
           -H 'Content-type: application/json' \
