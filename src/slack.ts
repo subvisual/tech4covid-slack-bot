@@ -1,6 +1,5 @@
 import * as _ from "lodash";
 import { WebClient } from '@slack/web-api';
-
 import { WebClient as LegacyClient } from "@slack/client";
 
 export const getChannels = async () => {
@@ -40,3 +39,4 @@ export const reply = (res: any, msg: string, opts?: any) => {
 
   res.send(msg);
 };
+
