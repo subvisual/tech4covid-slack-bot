@@ -1,0 +1,12 @@
+name: Slack action
+
+inputs:
+  script:
+    description: 'NodeJS script to use'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.script }}
