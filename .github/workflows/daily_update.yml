@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - uses: subvisual/tech4covid-slack-bot/.github/actions/slack
+      - uses: subvisual/tech4covid-slack-bot/.github/actions/slack@${{ github.ref }}
         with:
           script: test.js
       # - run: |
