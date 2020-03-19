@@ -14,5 +14,3 @@ jobs:
       - uses: subvisual/tech4covid-slack-bot/.github/actions/slack@mp/periodic
         with:
           script: test.js
-      # - run: |
-      #     cat daily_reminders.csv | xargs -L1 ./bin/daily_reminder.sh

@@ -1,7 +1,6 @@
 FROM node:10
 
-RUN npm install -g @slack/web-api
-
-COPY entrypoint.sh /
+COPY package-lock.json package.json entrypoint.sh .
+RUN npm install
 
 ENTRYPOINT ["/entrypoint.sh"]
