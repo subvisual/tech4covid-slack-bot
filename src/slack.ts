@@ -2,6 +2,18 @@ import * as _ from "lodash";
 import { WebClient } from '@slack/web-api';
 import { WebClient as LegacyClient } from "@slack/client";
 
+export const getUsers = async() => {
+  const api = new WebClient(process.env.SLACK_API_TOKEN);
+
+  return api.users.list();
+}
+
+export const getUser = async(id: string) => {
+  const api = new WebClient(process.env.SLACK_API_TOKEN);
+
+  return api.users.info({user: id});
+}
+
 export const getChannels = async () => {
   const api = new WebClient(process.env.SLACK_API_TOKEN);
 
