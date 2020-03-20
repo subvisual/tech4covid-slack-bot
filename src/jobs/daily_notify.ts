@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { WebClient } from '@slack/web-api';
 import { google } from 'googleapis';
 
-const usernames = ["@naps62_Dev-DevOps_Subvisual", "@André Francisco CTO HypeLabs"];
+// const usernames = ["@naps62_Dev-DevOps_Subvisual", "@André Francisco CTO HypeLabs"];
 
 const SheetID="1rJqTqH-QpFGlHWdyXhRX1Oe5_5NI9Dts5uESzQk7r7I";
 
@@ -72,21 +72,23 @@ const findSlackUserId = async (name: string, slackUsers: any[]): Promise<any> =>
 
     console.log(_.map(realUsers, u => u && u.id));
 
-    const users = await Promise.all(
-      _.chain(usernames).
-        map((name: string) => name.replace(/^@/, '')).
-        map((name: string) => findSlackUserId(name, slackUsers)).
-        value()
-    );
+    // const users = await Promise.all(
+    //   _.chain(usernames).
+    //     map((name: string) => name.replace(/^@/, '')).
+    //     map((name: string) => findSlackUserId(name, slackUsers)).
+    //     value()
+    // );
 
-    console.log(users)
+    // console.log(users)
 
-    _.map(users, async (user:any)=>{
-      try {
-        const dm: any = await api.conversations.open({users: `${user.id}`});
-        await api.chat.postMessage({text: msg, channel: dm.channel.id});
-      } catch(err) {
-        console.log(err)
+    _.map(realUsers, async (user:any)=>{
+      if (user != null) {
+        try {
+          const dm: any = await api.conversations.open({users: `${user.id}`});
+          await api.chat.postMessage({text: msg, channel: dm.channel.id});
+        } catch(err) {
+          console.log(err)
+        }
       }
     });
 
