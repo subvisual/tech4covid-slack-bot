@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { WebClient } from '@slack/web-api';
 import { google } from 'googleapis';
 
-const usernames = ["@naps62_Dev-DevOps_Subvisual"];
+const usernames = ["@naps62_Dev-DevOps_Subvisual", "@André Francisco CTO HypeLabs"];
 
 const SheetID="1rJqTqH-QpFGlHWdyXhRX1Oe5_5NI9Dts5uESzQk7r7I";
 
