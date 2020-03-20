@@ -1,0 +1,3 @@
+#!/bin/bash
+
+heroku $@ --app tech4covid19-slack-bot
