@@ -4,9 +4,25 @@ import { google } from 'googleapis';
 
 const usernames = ["@naps62_Dev-DevOps_Subvisual"];
 
-const Link = "Daily reminder: https://google.com";
+const Link = "https://humaniaks.typeform.com/to/pjr0jh";
+const Message = `Olá! Para melhor ajudar os projetos, pedidos updates a cada 24h. Podes por favor <${Link}|dar-nos um update aqui>. Obrigado.`;
 
 const getUsernames = async () => {
+  const client = google.sheets({version: 'v4', auth: process.env.GOOGLE_API_KEY});
+
+  const res: any = await client.spreadsheets.values.get({
+    spreadsheetId: '1rJqTqH-QpFGlHWdyXhRX1Oe5_5NI9Dts5uESzQk7r7I',
+    range: 'E3:E500',
+  })
+
+  return _.chain(res.data.values).
+    map(row => row[0]).
+    filter(handle => !!handle).
+    uniq().
+    value();
+}
+
+const getMessage = async() => {
   const client = google.sheets({version: 'v4', auth: process.env.GOOGLE_API_KEY});
 
   const res: any = await client.spreadsheets.values.get({
@@ -74,7 +90,7 @@ const findSlackUserId = async (name: string, slackUsers: any[]): Promise<any> =>
     _.map(users, async (user:any)=>{
       try {
         const dm: any = await api.conversations.open({users: `${user.id}`});
-        await api.chat.postMessage({text: Link, channel: dm.channel.id});
+        await api.chat.postMessage({text: Message, channel: dm.channel.id});
       } catch(err) {
         console.log(err)
       }
