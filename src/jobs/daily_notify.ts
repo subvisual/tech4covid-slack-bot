@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { WebClient } from '@slack/web-api';
 import { google } from 'googleapis';
 
-const usernames = ["@naps62_Dev-DevOps_Subvisual", "@André Francisco CTO HypeLabs"];
+const usernames = ["@naps62_Dev-DevOps_Subvisual"];
 
 const Link = "Daily reminder: https://google.com";
 
