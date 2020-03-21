@@ -53,6 +53,8 @@ const getMessage = async () => {
     _.map(slackUserIds, async (userId: any) => {
       if (userId != null) {
         try {
+          console.log(`Sending daily reminder to ${userId}`);
+
           const dm: any = await api.conversations.open({ users: `${userId}` });
           await api.chat.postMessage({ text: msg, channel: dm.channel.id });
         } catch (err) {
