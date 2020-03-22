@@ -6,6 +6,8 @@ import { google } from 'googleapis';
 
 const SheetID = '1rJqTqH-QpFGlHWdyXhRX1Oe5_5NI9Dts5uESzQk7r7I';
 const scopes = 'https://www.googleapis.com/auth/spreadsheets';
+const BotMsgSheet = 'Bot (daily)';
+const ProjectsSheet = 'Ideias e Projectos';
 
 const jwt = new google.auth.JWT({
   email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -22,10 +24,9 @@ const googleClient = google.sheets({ version: 'v4', auth: jwt });
 const getSlackIds = async () => {
   const res: any = await googleClient.spreadsheets.values.get({
     spreadsheetId: SheetID,
-    range: 'Ideias e Projectos!P3:P500',
+    range: `${ProjectsSheet}!P3:P500`,
   });
 
-  console.log(res.data);
   return _.chain(res.data.values)
     .map(row => row[0])
     .uniq()
@@ -35,7 +36,7 @@ const getSlackIds = async () => {
 const getMessage = async () => {
   const res: any = await googleClient.spreadsheets.values.get({
     spreadsheetId: SheetID,
-    range: 'Bots!B1:B1',
+    range: `${BotMsgSheet}!B1:B1`,
   });
 
   return res.data.values[0][0];
