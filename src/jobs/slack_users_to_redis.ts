@@ -10,14 +10,23 @@ const slack = new WebClient(process.env.HUBOT_SLACK_TOKEN);
 
   for await (const page of iterator) {
     _.each(page.members, (user: any) => {
-      redis.set(`user:${user.id}`, JSON.stringify(user.profile));
-
+      const id = user.id;
       const {
         display_name,
         display_name_normalized,
         real_name,
         real_name_normalized,
       } = user.profile;
+
+      const trimmedUser = {
+        id,
+        display_name,
+        display_name_normalized,
+        real_name,
+        real_name_normalized,
+      };
+
+      redis.set(`user:${user.id}`, JSON.stringify(trimmedUser));
 
       if (display_name !== '') {
         redis.set(`username:${display_name}`, user.id);
