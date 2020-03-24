@@ -13,7 +13,7 @@ import { promisify } from 'util';
 import { reply } from '../slack';
 
 const redis = Redis.createClient({ url: process.env.REDIS_URL });
-const redisGet = promisify(redis.get);
+const redisGet = promisify(redis.get).bind(redis);
 const scopes = 'https://www.googleapis.com/auth/spreadsheets';
 const jwt = new google.auth.JWT({
   email: process.env.GOOGLE_CLIENT_EMAIL,
