@@ -7,9 +7,11 @@
 
 import * as _ from 'lodash';
 import { google } from 'googleapis';
+import Redis from 'redis';
 
 import { reply } from '../slack';
 
+const redis = Redis.createClient({ url: process.env.REDIS_URL });
 const scopes = 'https://www.googleapis.com/auth/spreadsheets';
 const jwt = new google.auth.JWT({
   email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -59,10 +61,19 @@ module.exports = (robot: any) => {
 
     const skills = await getSkills();
 
-    const [, description, , action] = _.find(skills, ([keywords, ...rest]) =>
-      keywords.match(skill)
+    const [, description, person, action] = _.find(
+      skills,
+      ([keywords, ...rest]) => keywords.match(skill)
     );
 
-    reply(res, [description, action].join('\n'));
+    const personId = redis.get(`username:${person.replace(/^@/, '')}`);
+
+    const personSection = personId
+      ? `https://tech4covid19.slack.com/team/${personId}`
+      : '';
+
+    const response = [description, action, personSection].join('\n');
+
+    reply(res, response);
   });
 };
