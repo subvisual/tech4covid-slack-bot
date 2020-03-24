@@ -8,10 +8,12 @@
 import * as _ from 'lodash';
 import { google } from 'googleapis';
 import Redis from 'redis';
+import { promisify } from 'util';
 
 import { reply } from '../slack';
 
 const redis = Redis.createClient({ url: process.env.REDIS_URL });
+const redisGet = promisify(redis.get);
 const scopes = 'https://www.googleapis.com/auth/spreadsheets';
 const jwt = new google.auth.JWT({
   email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -66,7 +68,7 @@ module.exports = (robot: any) => {
       ([keywords, ...rest]) => keywords.match(skill)
     );
 
-    const personId = redis.get(`username:${person.replace(/^@/, '')}`);
+    const personId = await redisGet(`username:${person.replace(/^@/, '')}`);
 
     const personSection = personId
       ? `https://tech4covid19.slack.com/team/${personId}`
