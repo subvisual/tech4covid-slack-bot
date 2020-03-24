@@ -29,9 +29,9 @@
     "hubot-slack": "^4.7.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "node-redis": "^0.1.7",
     "pluralize": "^8.0.0",
     "prettier": "^1.19.1",
+    "redis": "^3.0.2",
     "titleize": "^2.1.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
