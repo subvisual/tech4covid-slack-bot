@@ -71,7 +71,7 @@ module.exports = (robot: any) => {
     const personId = await redisGet(`username:${person.replace(/^@/, '')}`);
 
     const personSection = personId
-      ? `https://tech4covid19.slack.com/team/${personId}`
+      ? `<https://tech4covid19.slack.com/team/${personId}|${person}>`
       : '';
 
     const response = [description, action, personSection].join('\n');
