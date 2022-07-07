@@ -28,7 +28,7 @@
     "hubot-rules": "^1.0.0",
     "hubot-slack": "^4.7.1",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "pluralize": "^8.0.0",
     "prettier": "^1.19.1",
     "redis": "^3.0.2",
